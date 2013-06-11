@@ -1,0 +1,16 @@
+#wrapper {
+    width: 960px;
+    margin: 0 auto;
+}
+
+#mainmap {
+    width: 960px;
+    height: 600px;
+    margin-bottom: 4em;
+}
+
+footer {
+    background: #CCC;
+    text-align: center;
+    padding: 1em 0;
+}

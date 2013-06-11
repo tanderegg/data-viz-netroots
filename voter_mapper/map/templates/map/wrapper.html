@@ -1,3 +1,5 @@
+{% load leaflet_tags %}
+
 <!DOCTYPE html>
 
 <html xmlns:fb="http://ogp.me/ns/fb#" prefix="og: http://ogp.me/ns#">
@@ -13,7 +15,6 @@
     </head>
 
     <body class="{{ page_type|lower|default:"home" }}" class="default" onload="prettyPrint()">
-
         <div id="wrapper">    
             <div class="container" id="content-wrapper">
                 <header id="site-header" class="clearfix">
@@ -45,6 +46,8 @@
         <!-- UI Tools: Tabs, Tooltip, Scrollable and Overlay (4.05 Kb) -->
         <script src="http://cdn.jquerytools.org/1.2.5/all/jquery.tools.min.js"></script>
         
+        {% leaflet_js %}
+
         <script src="{{ STATIC_URL }}js/script.js?=1"></script>
         
         {% block inlinescript %}

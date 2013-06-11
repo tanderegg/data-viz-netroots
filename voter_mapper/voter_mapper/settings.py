@@ -13,7 +13,8 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        #'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'voter_mapper',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': 'voter_mapper',
@@ -126,8 +127,11 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
+    'django.contrib.gis',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'south',
+    'leaflet',
     'map',
 )
 
@@ -158,4 +162,11 @@ LOGGING = {
             'propagate': True,
         },
     }
+}
+
+# APP SPECIFIC CONFIG
+LEAFLET_CONFIG = {
+    'DEFAULT_CENTER': (41.102768,-80.649117),
+    'DEFAULT_ZOOM': 12,
+    'TILES_URL': 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
 }

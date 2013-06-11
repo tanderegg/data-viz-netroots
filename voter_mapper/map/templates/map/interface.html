@@ -1,4 +1,7 @@
 {% extends "map/wrapper.html" %}
 
+{% load leaflet_tags %}
+
 {% block content %}
+    {% leaflet_map "mainmap" %}
 {% endblock %}
