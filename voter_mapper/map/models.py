@@ -17,11 +17,11 @@ class VotingDistrict(models.Model):
     funcstat_10     = models.CharField(max_length=1)
     a_land_10       = models.FloatField()
     a_water_10      = models.FloatField()
-    intpt_lat_10    = models.DecimalField(max_digits=13, decimal_places=10)
-    intpt_lon_10    = models.DecimalField(max_digits=13, decimal_places=10)
-    geometry        = models.MultiPolygonField()
+    intpt_lat_10    = models.CharField(max_length=13)
+    intpt_lon_10    = models.CharField(max_length=13)
+    geometry        = models.MultiPolygonField(srid=4326)
 
-    objects = models.GeoManager()   
+    objects = models.GeoManager()
 
     def __unicode__(self):
-        return self.name
+        return self.name_10
