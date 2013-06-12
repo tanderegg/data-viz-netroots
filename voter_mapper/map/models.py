@@ -1,4 +1,4 @@
-from django.db import models
+from django.contrib.gis.db import models
 
 class VotingDistrict(models.Model):
     '''
@@ -19,3 +19,9 @@ class VotingDistrict(models.Model):
     a_water_10      = models.FloatField()
     intpt_lat_10    = models.DecimalField(max_digits=13, decimal_places=10)
     intpt_lon_10    = models.DecimalField(max_digits=13, decimal_places=10)
+    geometry        = models.MultiPolygonField()
+
+    objects = models.GeoManager()   
+
+    def __unicode__(self):
+        return self.name
