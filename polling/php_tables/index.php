@@ -2,10 +2,10 @@
 
 	error_reporting(E_ALL);
 	
-	$hostname = "mysql.52attacks.com";   // eg. mysql.yourdomain.com (unique)
-	$username = "52a_live";   // the username specified when setting-up the database
-	$password = "gr0kgr0k";   // the password specified when setting-up the database
-	$database = "52attacks_com_myers";   // the database name chosen when setting-up the database (unique)
+	$hostname = "";   // eg. mysql.yourdomain.com (unique)
+	$username = "";   // the username specified when setting-up the database
+	$password = "";   // the password specified when setting-up the database
+	$database = "";   // the database name chosen when setting-up the database (unique)
 
 	$link = mysql_connect($hostname,$username,$password);
 	mysql_select_db($database) or die("Unable to select database");
