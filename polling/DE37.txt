@@ -1,0 +1,203 @@
+
+Q.1 Interviewer initials Hello, my name is (caller name). I'm calling for C&R, a national public opinion research firm. I would like to ask you a few questions concerning the problems facing our nation, state and local communities. I am NOT selling anything, and I will NOT ask you for a donation. May I speak with [NAME FROM FILE]?  
+_
+[IF RESPONDENT, CONTINUE]  
+_
+[IF NO] Is there another registered voter at the home I can speak with?  
+_
+[IF YES, CONTINUE] 
+
+Q.2 First of all, are you registered to vote at this address?
+_
+[IF NO] I'm sorry. Is there a registered voter at home I can speak to?
+	*) Yes
+	*) No (TERMINATE)
+
+Q.3 Sex of respondent [INTERVIEWER CODE--DO NOT ASK RESPONDENT]
+	*) Male
+	*) Female
+
+Q.4 I know it's a long way off, but what are the chances of your voting in the election for President, Congress, the state legislature and other offices this November -- are you almost certain to vote, will you probably vote, are the chances 50-50, or don't you think you will vote?
+	*) Almost certain
+	*) Probably
+	*) 50-50 (TERMINATE)
+	*) Don't think will vote (TERMINATE)
+	*) (Don't know/refused) (TERMINATE)
+
+Q.5 First, thinking about the elections this November, if the election for Delaware State House were held today, would you be voting for [ROTATE] the Democratic candidate or the Republican candidate in your district?
+_
+	*) Democratic candidate
+	*) Republican candidate
+	*) (Undecided)
+	*) (Other candidate)
+
+
+Q.6 (IF UNDECIDED IN Q5) Well, if the election were held today and you had to decide right now, to which candidate would you lean -- [ROTATE] the Republican candidate or the Democratic candidate?
+_
+	*) Democratic candidate
+	*) Republican candidate
+	*) (Undecided)
+	*) (Other candidate)
+
+Q.7 Generally speaking, do you think that things in Delaware are going in the right direction, or do you feel things have gotten pretty seriously off on the wrong track?
+	*) Right direction
+	*) Wrong track
+	*) (Don't know/refused)
+
+Q.8 What would you say is the biggest issue that you would like the Governor and General Assembly to focus on? (OPEN END -- RECORD VERBATIM RESPONSE -- ALLOW MULTIPLE RESPONSES)
+_
+	*) ??
+
+Q.9 Okay.  Now I'm going to read you the names of some people and organizations, and I'd like you to rate your feelings toward each one as very favorable, somewhat favorable, somewhat unfavorable, or very unfavorable. If you have no opinion or never heard of that person or organization, please say so.
+_
+[IF DON'T KNOW:] Would you say you are unable to give an opinion of (READ BELOW), or have you never heard of (READ BELOW)?
+_
+[NO OPINION/NEUTRAL = 5] [NEVER HEARD = 6] [DON'T KNOW/REFUSED = 7]
+_
+[READ BELOW] Would you say you have a very favorable, somewhat favorable, somewhat unfavorable, or very unfavorable opinion of (READ BELOW)?
+_
+(RANDOMIZE)
+_
+_____1 = Very favorable
+_____2 = Somewhat favorable
+_____3 = Somewhat unfavorable
+_____4 = Very unfavorable
+_____5 = (No opinion/neutral)
+_____6 = (Never heard)
+_____7 = (Don't know/refused)
+_
+	*) 9 Mick Jagger
+	*) 10 Pete Townsend
+	*) 11 BB King
+	*) 12 Manfred Mann
+--------------------
+
+Q.13 Now let me ask you about several political figures.
+_
+[PROMPT] Would you say (READ NAME) is doing an excellent, good, just fair, or poor job?
+_
+_____1 = Excellent
+_____2 = Good
+_____3 = Just Fair
+_____4 = Poor
+_____5 = (Don't know/refused)
+_
+	*) 13 BB King
+	*) 14 Pete Townsend
+
+Q.15 And overall, do you think that Pete Townsend deserves re-election as State Representative or do you think that someone new should be given a chance?
+_
+	*) Deserves re-election
+	*) Someone new
+	*) (Don't know/refused)
+
+Q.16 Now thinking about the elections this November, if the election for Governor were held today and the candidates were: [ROTATE] Democrat BB King and Republican Manfred Mann -- for whom would you vote, [ROTATE] Democrat BB King or Republican Manfred Mann?
+_
+	*) BB King
+	*) Manfred Mann
+	*) (Undecided)
+
+Q.17 [IF UNDECIDED IN PRESVOTE] Well, if the election were held today and you had to decide right now, to which candidate would you lean -- [ROTATE] Democrat BB King or Republican Manfred Mann?
+_
+	*) BB King
+	*) Manfred Mann
+	*) (Undecided)
+
+Q.18 Now, let me ask again about the election for State House this November. If the election for State House were held today and the candidates were: [ROTATE] Democrat Mick Jagger and Republican Pete Townsend -- for whom would you vote, [ROTATE] Democrat Mick Jagger or Republican Pete Townsend?
+_
+	*) Mick Jagger
+	*) Pete Townsend
+	*) (Undecided)
+
+Q.19 [IF UNDECIDED IN VOTE1] Well, if the election were held today and you had to decide right now, to which candidate would you lean -- [ROTATE] Democrat Mick Jagger or Republican Pete Townsend?
+_
+	*) Mick Jagger
+	*) Pete Townsend
+	*) (Undecided)
+
+Q.20 [IF NOT UNDECIDED IN VOTE1B] How certain are you that you would vote for [CANDIDATE], are you very certain, somewhat certain or not certain at all?
+	*) Very certain
+	*) Somewhat certain
+	*) Not certain at all
+	*) (Don't know/refused)
+
+Q.21 Now, I am going to read you a statement about the candidates for State House.
+_
+(ROTATE STATEMENTS)
+_
+Democrat Mick Jagger is a founding member of The Rolling Stones. He is considered one of the greatest figures in rock and roll history for his contributions to the creation of rock and roll, his stage presence, his harmonica presence and the emotional depth of his songs.
+_
+Republican State Representative Pete Townsend is a founding member of The Who.  He is considered to be rock and roll's first intellectual because of his attempts to bring more thematic complexity to rock and roll songs and musical complexity. 
+_
+Now, after hearing that information, let me ask you again about the election for State House this November. If the election for State House were held today and the candidates were: [ROTATE] Democrat Mick Jagger and Republican Pete Townsend -- for whom would you vote, [ROTATE] Democrat Mick Jagger or Republican Pete Townsend?
+_
+	*) Mick Jagger
+	*) Pete Townsend
+	*) (Undecided)
+
+Q.22 [IF UNDECIDED IN VOTEBIO] Well, if the election were held today and you had to decide right now, to which candidate would you lean -- [ROTATE] Democrat Mick Jagger or Republican Pete Townsend?
+_
+	*) Mick Jagger
+	*) Pete Townsend
+	*) (Undecided)
+
+Q.23 (IF MCGINN IN VOTEBIO OR VOTEBIO2) And aside from being a Democrat, what stood out as the best reason to support Mick Jagger for State House? (OPEN END -- RECORD VERBATIM RESPONSE -- ACCEPT MULTIPLE RESPONSES)
+_
+	*) ??
+	
+Q.24 (IF KING IN VOTEBIO OR VOTEBIO2) And aside from being a Republican, what stood out as the best reason to support Pete Townsend for State House? (OPEN END -- RECORD VERBATIM RESPONSE -- ACCEPT MULTIPLE RESPONSES)
+_
+	*) ??
+
+Q.25 Finally, I would like to ask you a few questions for statistical purposes.
+_
+Generally speaking, do you think of yourself as a [ROTATE] Republican, a Democrat or what?
+	*) Democrat
+	*) (Independent)
+	*) Republican
+	*) (Other)
+	*) (Don't know)
+
+Q.26 [IF DEMOCRAT OR REPUBLICAN FROM PTYID1] Would you call yourself a strong [DEMOCRAT/REPUBLICAN FROM PTYID1] or a not very strong [DEMOCRAT/REPUBLICAN FROM PTYID1]?
+	*) Strong
+	*) Not strong
+	*) (Don't know)
+
+Q.27 [IF INDEPENDENT, OTHER OR DON'T KNOW IN PTYID1] Do you think of yourself as closer to the Republican or Democratic Party?
+	*) Closer to Democrats
+	*) Closer to Republicans
+	*) (Neither/independent)
+	*) (Don't know/refused)
+
+Q.28 Thinking in political terms, would you say that you are [ROTATE LIBERAL AND CONSERVATIVE WITH MODERATE ALWAYS IN THE MIDDLE] Liberal, Moderate, or Conservative?
+	*) Liberal
+	*) Moderate
+	*) Conservative
+	*) (Don't know/refused)
+
+Q.29 In what year were you born? (DON'T KNOW = 0000)
+
+Q.30 What is the last year of schooling that you have completed?
+(DO NOT READ LIST)
+	*) 1 - 11th grade
+	*) High school graduate
+	*) Non-college post H.S.
+	*) Some college
+	*) College graduate
+	*) Post-graduate school
+	*) (Don't know/refused)
+
+Q.31 Do you or your family rent or own the home in which you live?
+_
+	*) Rent
+	*) Own
+	*) (Don't know/refused)
+
+Q.32 And do you live in a manufactured home?
+_
+	*) Yes
+	*) No
+	*) (Don't know/refused)
+
+Q.33 And finally, strictly for verification purposes by my supervisor, can I have just your first name?
+	*) ??
