@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://www.clarityandrigour.com/nn13/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8">
+<style>
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: auto;
+  position: relative;
+  width: 1000px;
+  
+}
+.main {
+  width: 1000px;
+  margin: auto;
+}
+pre {
+  font-size: 18px;
+}
+table {
+  width: 100%;
+}
+td.tabular {
+  width: 370px;
+}
+td.viz-container-container {
+  height: 100%;
+}
+.viz-container {
+  height: 100%;
+  width: 100%;
+}
+</style>
+<script src="./nn13_files/jquery-1.10.1.min.js"></script><style type="text/css"></style><style type="text/css"></style>
+<script src="./nn13_files/d3.v3.min.js"></script>
+
+<script>
+
+$( document ).ready(function() {
+
+  $('.viz-container').each(function(idx, dataSection) {
+    
+    
+
+      var margin = {top: 30, right: 10, bottom: 10, left: 10},
+          width = 600 - margin.left - margin.right,
+          height = 500 - margin.top - margin.bottom;
+
+      var x = d3.scale.linear()
+          .range([0, width])
+
+      var y = d3.scale.ordinal()
+          .rangeRoundBands([0, height], .2);
+
+      var xAxis = d3.svg.axis()
+          .scale(x)
+          .orient("top");
+
+      var svg = d3.select(dataSection).append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      d3.tsv("data.tsv", type, function(error, data) {
+        x.domain(d3.extent(data, function(d) { return d.value; })).nice();
+        y.domain(data.map(function(d) { return d.name; }));
+
+        svg.selectAll(".bar")
+            .data(data)
+          .enter().append("rect")
+            .attr("class", function(d) { return d.value < 0 ? "bar negative" : "bar positive"; })
+            .attr("x", function(d) { return x(Math.min(0, d.value)); })
+            .attr("y", function(d) { return y(d.name); })
+            .attr("width", function(d) { return Math.abs(x(d.value) - x(0)); })
+            .attr("height", y.rangeBand());
+
+        svg.append("g")
+            .attr("class", "x axis")
+            .call(xAxis);
+
+        svg.append("g")
+            .attr("class", "y axis")
+          .append("line")
+            .attr("x1", x(0))
+            .attr("x2", x(0))
+            .attr("y2", height);
+
+      });
+
+     
+
+    });
+    
+     function type(d) {
+        d.value = +d.value;
+        return d;
+      }
+
+});
+
+</script>
+</head><body style="">
+  <div class="main">
+<div class="data-section" id="SCREEN1"><pre>==== Netroots Nation '13 Rockstars Poll TOP LINES === 06/21 ===
+REGISTERED
+(ref:SCREEN1)
+</pre><table><tbody><tr><td class="tabular"><pre>                          Total
+                         ======
+Total answering             300 
+                         100.0%
+
+YES                         300 
+                         100.0%
+
+NO                         -  
+                           0.0%
+
+</pre></td><td class="viz-container-container"><div class="viz-container"><svg width="600" height="500"><g transform="translate(10,30)"><rect class="bar negative" x="217.5" y="12" width="217.5" height="45"></rect><rect class="bar negative" x="145" y="68" width="290" height="45"></rect><rect class="bar negative" x="116" y="124" width="319" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="180" width="261" height="45"></rect><rect class="bar positive" x="435" y="236" width="29" height="45"></rect><rect class="bar positive" x="435" y="292" width="87" height="45"></rect><rect class="bar negative" x="58" y="348" width="377" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="404" width="261" height="45"></rect><g class="x axis"><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-30</text></g><g class="tick major" transform="translate(72.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-25</text></g><g class="tick major" transform="translate(145,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-20</text></g><g class="tick major" transform="translate(217.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-15</text></g><g class="tick major" transform="translate(290,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-10</text></g><g class="tick major" transform="translate(362.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-5</text></g><g class="tick major" transform="translate(435,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">0</text></g><g class="tick major" transform="translate(507.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">5</text></g><g class="tick major" transform="translate(580,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">10</text></g><path class="domain" d="M0,-6V0H580V-6"></path></g><g class="y axis"><line x1="435" x2="435" y2="460"></line></g></g></svg></div></td></tr></tbody></table></div>
+
+
+<div class="data-section" id="GENDER"><pre>==== Netroots Nation '13 Rockstars Poll TOP LINES === 06/21 ===
+RESPONDENT GENDER
+(ref:GENDER)
+</pre><table><tbody><tr><td class="tabular"><pre>                          Total
+                         ======
+Total answering             300 
+                         100.0%
+
+MALE                        141 
+                          47.0%
+
+FEMALE                      159 
+                          53.0%
+
+</pre></td><td class="viz-container-container"><div class="viz-container"><svg width="600" height="500"><g transform="translate(10,30)"><rect class="bar negative" x="217.5" y="12" width="217.5" height="45"></rect><rect class="bar negative" x="145" y="68" width="290" height="45"></rect><rect class="bar negative" x="116" y="124" width="319" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="180" width="261" height="45"></rect><rect class="bar positive" x="435" y="236" width="29" height="45"></rect><rect class="bar positive" x="435" y="292" width="87" height="45"></rect><rect class="bar negative" x="58" y="348" width="377" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="404" width="261" height="45"></rect><g class="x axis"><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-30</text></g><g class="tick major" transform="translate(72.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-25</text></g><g class="tick major" transform="translate(145,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-20</text></g><g class="tick major" transform="translate(217.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-15</text></g><g class="tick major" transform="translate(290,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-10</text></g><g class="tick major" transform="translate(362.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-5</text></g><g class="tick major" transform="translate(435,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">0</text></g><g class="tick major" transform="translate(507.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">5</text></g><g class="tick major" transform="translate(580,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">10</text></g><path class="domain" d="M0,-6V0H580V-6"></path></g><g class="y axis"><line x1="435" x2="435" y2="460"></line></g></g></svg></div></td></tr></tbody></table></div>
+
+
+<div class="data-section" id="AREA"><pre>==== Netroots Nation '13 Rockstars Poll TOP LINES === 06/21 ===
+REGION
+(ref:AREA)
+</pre><table><tbody><tr><td class="tabular"><pre>                          Total
+                         ======
+Total answering             300 
+                         100.0%
+
+GEORGETOWN                   72 
+                          24.0%
+
+RURAL                       108 
+                          36.0%
+
+BAY AREA                    120 
+                          40.0%
+
+</pre></td><td class="viz-container-container"><div class="viz-container"><svg width="600" height="500"><g transform="translate(10,30)"><rect class="bar negative" x="217.5" y="12" width="217.5" height="45"></rect><rect class="bar negative" x="145" y="68" width="290" height="45"></rect><rect class="bar negative" x="116" y="124" width="319" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="180" width="261" height="45"></rect><rect class="bar positive" x="435" y="236" width="29" height="45"></rect><rect class="bar positive" x="435" y="292" width="87" height="45"></rect><rect class="bar negative" x="58" y="348" width="377" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="404" width="261" height="45"></rect><g class="x axis"><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-30</text></g><g class="tick major" transform="translate(72.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-25</text></g><g class="tick major" transform="translate(145,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-20</text></g><g class="tick major" transform="translate(217.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-15</text></g><g class="tick major" transform="translate(290,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-10</text></g><g class="tick major" transform="translate(362.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-5</text></g><g class="tick major" transform="translate(435,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">0</text></g><g class="tick major" transform="translate(507.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">5</text></g><g class="tick major" transform="translate(580,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">10</text></g><path class="domain" d="M0,-6V0H580V-6"></path></g><g class="y axis"><line x1="435" x2="435" y2="460"></line></g></g></svg></div></td></tr></tbody></table></div>
+
+
+<div class="data-section" id="PHTYPE"><pre>==== Netroots Nation '13 Rockstars Poll TOP LINES === 06/21 ===
+PHONE TYPE
+(ref:PHTYPE)
+</pre><table><tbody><tr><td class="tabular"><pre>                          Total
+                         ======
+Total answering             300 
+                         100.0%
+
+WIRELESS                     30 
+                          10.0%
+
+LANDLINE                    266 
+                          88.7%
+
+VOIP                          4 
+                           1.3%
+
+</pre></td><td class="viz-container-container"><div class="viz-container"><svg width="600" height="500"><g transform="translate(10,30)"><rect class="bar negative" x="217.5" y="12" width="217.5" height="45"></rect><rect class="bar negative" x="145" y="68" width="290" height="45"></rect><rect class="bar negative" x="116" y="124" width="319" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="180" width="261" height="45"></rect><rect class="bar positive" x="435" y="236" width="29" height="45"></rect><rect class="bar positive" x="435" y="292" width="87" height="45"></rect><rect class="bar negative" x="58" y="348" width="377" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="404" width="261" height="45"></rect><g class="x axis"><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-30</text></g><g class="tick major" transform="translate(72.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-25</text></g><g class="tick major" transform="translate(145,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-20</text></g><g class="tick major" transform="translate(217.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-15</text></g><g class="tick major" transform="translate(290,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-10</text></g><g class="tick major" transform="translate(362.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-5</text></g><g class="tick major" transform="translate(435,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">0</text></g><g class="tick major" transform="translate(507.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">5</text></g><g class="tick major" transform="translate(580,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">10</text></g><path class="domain" d="M0,-6V0H580V-6"></path></g><g class="y axis"><line x1="435" x2="435" y2="460"></line></g></g></svg></div></td></tr></tbody></table></div>
+
+
+<div class="data-section" id="WILLVOTE"><pre>==== Netroots Nation '13 Rockstars Poll TOP LINES === 06/21 ===
+CHANCE VOTE
+(ref:WILLVOTE)
+</pre><table><tbody><tr><td class="tabular"><pre>                          Total
+                         ======
+Total answering             300 
+                         100.0%
+
+ALMOST CERTAIN              279 
+                          93.0%
+
+PROBABLY                     21 
+                           7.0%
+
+50-50                      -  
+                           0.0%
+
+DK/NR                      -  
+                           0.0%
+
+</pre></td><td class="viz-container-container"><div class="viz-container"><svg width="600" height="500"><g transform="translate(10,30)"><rect class="bar negative" x="217.5" y="12" width="217.5" height="45"></rect><rect class="bar negative" x="145" y="68" width="290" height="45"></rect><rect class="bar negative" x="116" y="124" width="319" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="180" width="261" height="45"></rect><rect class="bar positive" x="435" y="236" width="29" height="45"></rect><rect class="bar positive" x="435" y="292" width="87" height="45"></rect><rect class="bar negative" x="58" y="348" width="377" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="404" width="261" height="45"></rect><g class="x axis"><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-30</text></g><g class="tick major" transform="translate(72.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-25</text></g><g class="tick major" transform="translate(145,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-20</text></g><g class="tick major" transform="translate(217.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-15</text></g><g class="tick major" transform="translate(290,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-10</text></g><g class="tick major" transform="translate(362.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-5</text></g><g class="tick major" transform="translate(435,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">0</text></g><g class="tick major" transform="translate(507.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">5</text></g><g class="tick major" transform="translate(580,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">10</text></g><path class="domain" d="M0,-6V0H580V-6"></path></g><g class="y axis"><line x1="435" x2="435" y2="460"></line></g></g></svg></div></td></tr></tbody></table></div>
+
+
+<div class="data-section" id="DIRECT"><pre>==== Netroots Nation '13 Rockstars Poll TOP LINES === 06/21 ===
+DIRECTION
+(ref:DIRECT)
+</pre><table><tbody><tr><td class="tabular"><pre>                          Total
+                         ======
+Total answering             300 
+                         100.0%
+
+RIGHT DIRECTION             120 
+                          40.0%
+
+WRONG TRACK                 142 
+                          47.3%
+
+DK/NR                        38 
+                          12.7%
+
+</pre></td><td class="viz-container-container"><div class="viz-container"><svg width="600" height="500"><g transform="translate(10,30)"><rect class="bar negative" x="217.5" y="12" width="217.5" height="45"></rect><rect class="bar negative" x="145" y="68" width="290" height="45"></rect><rect class="bar negative" x="116" y="124" width="319" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="180" width="261" height="45"></rect><rect class="bar positive" x="435" y="236" width="29" height="45"></rect><rect class="bar positive" x="435" y="292" width="87" height="45"></rect><rect class="bar negative" x="58" y="348" width="377" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="404" width="261" height="45"></rect><g class="x axis"><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-30</text></g><g class="tick major" transform="translate(72.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-25</text></g><g class="tick major" transform="translate(145,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-20</text></g><g class="tick major" transform="translate(217.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-15</text></g><g class="tick major" transform="translate(290,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-10</text></g><g class="tick major" transform="translate(362.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-5</text></g><g class="tick major" transform="translate(435,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">0</text></g><g class="tick major" transform="translate(507.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">5</text></g><g class="tick major" transform="translate(580,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">10</text></g><path class="domain" d="M0,-6V0H580V-6"></path></g><g class="y axis"><line x1="435" x2="435" y2="460"></line></g></g></svg></div></td></tr></tbody></table></div>
+
+
+<div class="data-section" id="THERM2A"><pre>==== Netroots Nation '13 Rockstars Poll TOP LINES === 06/21 ===
+THERMS: MICK JAGGER
+(ref:THERM2A)
+</pre><table><tbody><tr><td class="tabular"><pre>                          Total
+                         ======
+Total answering             300 
+                         100.0%
+
+TOTAL FAV                    75 
+                          25.0%
+
+TOTAL UNFAV                  50 
+                          16.7%
+
+TOTAL FAV - TOTAL UNFAV      25 
+                           8.3%
+
+VERY FAVORABLE               44 
+                          14.7%
+
+SOMEWHAT FAVORABLE           31 
+                          10.3%
+
+SOMEWHAT UNFAVORABLE         23 
+                           7.7%
+
+VERY UNFAVORABLE             27 
+                           9.0%
+
+NO OPINION/NEUTRAL           76 
+                          25.3%
+
+NEVER HEARD                  75 
+                          25.0%
+
+DK/NR                        24 
+                           8.0%
+
+</pre></td><td class="viz-container-container"><div class="viz-container"><svg width="600" height="500"><g transform="translate(10,30)"><rect class="bar negative" x="217.5" y="12" width="217.5" height="45"></rect><rect class="bar negative" x="145" y="68" width="290" height="45"></rect><rect class="bar negative" x="116" y="124" width="319" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="180" width="261" height="45"></rect><rect class="bar positive" x="435" y="236" width="29" height="45"></rect><rect class="bar positive" x="435" y="292" width="87" height="45"></rect><rect class="bar negative" x="58" y="348" width="377" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="404" width="261" height="45"></rect><g class="x axis"><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-30</text></g><g class="tick major" transform="translate(72.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-25</text></g><g class="tick major" transform="translate(145,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-20</text></g><g class="tick major" transform="translate(217.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-15</text></g><g class="tick major" transform="translate(290,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-10</text></g><g class="tick major" transform="translate(362.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-5</text></g><g class="tick major" transform="translate(435,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">0</text></g><g class="tick major" transform="translate(507.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">5</text></g><g class="tick major" transform="translate(580,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">10</text></g><path class="domain" d="M0,-6V0H580V-6"></path></g><g class="y axis"><line x1="435" x2="435" y2="460"></line></g></g></svg></div></td></tr></tbody></table></div>
+
+
+<div class="data-section" id="THERM2B"><pre>==== Netroots Nation '13 Rockstars Poll TOP LINES === 06/21 ===
+THERMS: PETE TOWNSEND
+(ref:THERM2B)
+</pre><table><tbody><tr><td class="tabular"><pre>                          Total
+                         ======
+Total answering             300 
+                         100.0%
+
+TOTAL FAV                   143 
+                          47.7%
+
+TOTAL UNFAV                  66 
+                          22.0%
+
+TOTAL FAV - TOTAL UNFAV      77 
+                          25.7%
+
+VERY FAVORABLE               92 
+                          30.7%
+
+SOMEWHAT FAVORABLE           51 
+                          17.0%
+
+SOMEWHAT UNFAVORABLE         35 
+                          11.7%
+
+VERY UNFAVORABLE             31 
+                          10.3%
+
+NO OPINION/NEUTRAL           51 
+                          17.0%
+
+NEVER HEARD                  28 
+                           9.3%
+
+DK/NR                        12 
+                           4.0%
+
+</pre></td><td class="viz-container-container"><div class="viz-container"><svg width="600" height="500"><g transform="translate(10,30)"><rect class="bar negative" x="217.5" y="12" width="217.5" height="45"></rect><rect class="bar negative" x="145" y="68" width="290" height="45"></rect><rect class="bar negative" x="116" y="124" width="319" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="180" width="261" height="45"></rect><rect class="bar positive" x="435" y="236" width="29" height="45"></rect><rect class="bar positive" x="435" y="292" width="87" height="45"></rect><rect class="bar negative" x="58" y="348" width="377" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="404" width="261" height="45"></rect><g class="x axis"><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-30</text></g><g class="tick major" transform="translate(72.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-25</text></g><g class="tick major" transform="translate(145,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-20</text></g><g class="tick major" transform="translate(217.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-15</text></g><g class="tick major" transform="translate(290,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-10</text></g><g class="tick major" transform="translate(362.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-5</text></g><g class="tick major" transform="translate(435,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">0</text></g><g class="tick major" transform="translate(507.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">5</text></g><g class="tick major" transform="translate(580,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">10</text></g><path class="domain" d="M0,-6V0H580V-6"></path></g><g class="y axis"><line x1="435" x2="435" y2="460"></line></g></g></svg></div></td></tr></tbody></table></div>
+
+
+<div class="data-section" id="THERM2C"><pre>==== Netroots Nation '13 Rockstars Poll TOP LINES === 06/21 ===
+THERMS: BB KING
+(ref:THERM2C)
+</pre><table><tbody><tr><td class="tabular"><pre>                          Total
+                         ======
+Total answering             300 
+                         100.0%
+
+TOTAL FAV                   156 
+                          52.0%
+
+TOTAL UNFAV                  97 
+                          32.3%
+
+TOTAL FAV - TOTAL UNFAV      59 
+                          19.7%
+
+VERY FAVORABLE               81 
+                          27.0%
+
+SOMEWHAT FAVORABLE           75 
+                          25.0%
+
+SOMEWHAT UNFAVORABLE         39 
+                          13.0%
+
+VERY UNFAVORABLE             58 
+                          19.3%
+
+NO OPINION/NEUTRAL           32 
+                          10.7%
+
+NEVER HEARD                  10 
+                           3.3%
+
+DK/NR                         5 
+                           1.7%
+
+</pre></td><td class="viz-container-container"><div class="viz-container"><svg width="600" height="500"><g transform="translate(10,30)"><rect class="bar negative" x="217.5" y="12" width="217.5" height="45"></rect><rect class="bar negative" x="145" y="68" width="290" height="45"></rect><rect class="bar negative" x="116" y="124" width="319" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="180" width="261" height="45"></rect><rect class="bar positive" x="435" y="236" width="29" height="45"></rect><rect class="bar positive" x="435" y="292" width="87" height="45"></rect><rect class="bar negative" x="58" y="348" width="377" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="404" width="261" height="45"></rect><g class="x axis"><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-30</text></g><g class="tick major" transform="translate(72.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-25</text></g><g class="tick major" transform="translate(145,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-20</text></g><g class="tick major" transform="translate(217.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-15</text></g><g class="tick major" transform="translate(290,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-10</text></g><g class="tick major" transform="translate(362.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-5</text></g><g class="tick major" transform="translate(435,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">0</text></g><g class="tick major" transform="translate(507.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">5</text></g><g class="tick major" transform="translate(580,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">10</text></g><path class="domain" d="M0,-6V0H580V-6"></path></g><g class="y axis"><line x1="435" x2="435" y2="460"></line></g></g></svg></div></td></tr></tbody></table></div>
+
+
+<div class="data-section" id="THERM2D"><pre>==== Netroots Nation '13 Rockstars Poll TOP LINES === 06/21 ===
+THERMS: MANFRED MANN
+(ref:THERM2D)
+</pre><table><tbody><tr><td class="tabular"><pre>                          Total
+                         ======
+Total answering             300 
+                         100.0%
+
+TOTAL FAV                    74 
+                          24.7%
+
+TOTAL UNFAV                  50 
+                          16.7%
+
+TOTAL FAV - TOTAL UNFAV      24 
+                           8.0%
+
+VERY FAVORABLE               43 
+                          14.3%
+
+SOMEWHAT FAVORABLE           31 
+                          10.3%
+
+SOMEWHAT UNFAVORABLE         27 
+                           9.0%
+
+VERY UNFAVORABLE             23 
+                           7.7%
+
+NO OPINION/NEUTRAL           87 
+                          29.0%
+
+NEVER HEARD                  62 
+                          20.7%
+
+DK/NR                        27 
+                           9.0%
+
+</pre></td><td class="viz-container-container"><div class="viz-container"><svg width="600" height="500"><g transform="translate(10,30)"><rect class="bar negative" x="217.5" y="12" width="217.5" height="45"></rect><rect class="bar negative" x="145" y="68" width="290" height="45"></rect><rect class="bar negative" x="116" y="124" width="319" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="180" width="261" height="45"></rect><rect class="bar positive" x="435" y="236" width="29" height="45"></rect><rect class="bar positive" x="435" y="292" width="87" height="45"></rect><rect class="bar negative" x="58" y="348" width="377" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="404" width="261" height="45"></rect><g class="x axis"><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-30</text></g><g class="tick major" transform="translate(72.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-25</text></g><g class="tick major" transform="translate(145,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-20</text></g><g class="tick major" transform="translate(217.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-15</text></g><g class="tick major" transform="translate(290,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-10</text></g><g class="tick major" transform="translate(362.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-5</text></g><g class="tick major" transform="translate(435,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">0</text></g><g class="tick major" transform="translate(507.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">5</text></g><g class="tick major" transform="translate(580,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">10</text></g><path class="domain" d="M0,-6V0H580V-6"></path></g><g class="y axis"><line x1="435" x2="435" y2="460"></line></g></g></svg></div></td></tr></tbody></table></div>
+
+
+<div class="data-section" id="JOBA"><pre>==== Netroots Nation '13 Rockstars Poll TOP LINES === 06/21 ===
+JOB APPROVAL 13 GOVERNOR BB KING
+(ref:JOBA)
+</pre><table><tbody><tr><td class="tabular"><pre>                          Total
+                         ======
+Total answering             300 
+                         100.0%
+
+EXCELLENT/GOOD              146 
+                          48.7%
+
+EXCELLENT                    43 
+                          14.3%
+
+GOOD                        103 
+                          34.3%
+
+JUST FAIR                    91 
+                          30.3%
+
+POOR                         48 
+                          16.0%
+
+DK/NR                        15 
+                           5.0%
+
+</pre></td><td class="viz-container-container"><div class="viz-container"><svg width="600" height="500"><g transform="translate(10,30)"><rect class="bar negative" x="217.5" y="12" width="217.5" height="45"></rect><rect class="bar negative" x="145" y="68" width="290" height="45"></rect><rect class="bar negative" x="116" y="124" width="319" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="180" width="261" height="45"></rect><rect class="bar positive" x="435" y="236" width="29" height="45"></rect><rect class="bar positive" x="435" y="292" width="87" height="45"></rect><rect class="bar negative" x="58" y="348" width="377" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="404" width="261" height="45"></rect><g class="x axis"><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-30</text></g><g class="tick major" transform="translate(72.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-25</text></g><g class="tick major" transform="translate(145,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-20</text></g><g class="tick major" transform="translate(217.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-15</text></g><g class="tick major" transform="translate(290,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-10</text></g><g class="tick major" transform="translate(362.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-5</text></g><g class="tick major" transform="translate(435,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">0</text></g><g class="tick major" transform="translate(507.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">5</text></g><g class="tick major" transform="translate(580,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">10</text></g><path class="domain" d="M0,-6V0H580V-6"></path></g><g class="y axis"><line x1="435" x2="435" y2="460"></line></g></g></svg></div></td></tr></tbody></table></div>
+
+
+<div class="data-section" id="JOBB"><pre>==== Netroots Nation '13 Rockstars Poll TOP LINES === 06/21 ===
+JOB APPROVAL 14 STATE REP PETE TOWNSEND
+(ref:JOBB)
+</pre><table><tbody><tr><td class="tabular"><pre>                          Total
+                         ======
+Total answering             300 
+                         100.0%
+
+EXCELLENT/GOOD              134 
+                          44.7%
+
+EXCELLENT                    54 
+                          18.0%
+
+GOOD                         80 
+                          26.7%
+
+JUST FAIR                    66 
+                          22.0%
+
+POOR                         28 
+                           9.3%
+
+DK/NR                        72 
+                          24.0%
+
+</pre></td><td class="viz-container-container"><div class="viz-container"><svg width="600" height="500"><g transform="translate(10,30)"><rect class="bar negative" x="217.5" y="12" width="217.5" height="45"></rect><rect class="bar negative" x="145" y="68" width="290" height="45"></rect><rect class="bar negative" x="116" y="124" width="319" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="180" width="261" height="45"></rect><rect class="bar positive" x="435" y="236" width="29" height="45"></rect><rect class="bar positive" x="435" y="292" width="87" height="45"></rect><rect class="bar negative" x="58" y="348" width="377" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="404" width="261" height="45"></rect><g class="x axis"><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-30</text></g><g class="tick major" transform="translate(72.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-25</text></g><g class="tick major" transform="translate(145,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-20</text></g><g class="tick major" transform="translate(217.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-15</text></g><g class="tick major" transform="translate(290,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-10</text></g><g class="tick major" transform="translate(362.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-5</text></g><g class="tick major" transform="translate(435,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">0</text></g><g class="tick major" transform="translate(507.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">5</text></g><g class="tick major" transform="translate(580,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">10</text></g><path class="domain" d="M0,-6V0H580V-6"></path></g><g class="y axis"><line x1="435" x2="435" y2="460"></line></g></g></svg></div></td></tr></tbody></table></div>
+
+
+<div class="data-section" id="REELECT"><pre>==== Netroots Nation '13 Rockstars Poll TOP LINES === 06/21 ===
+RE-ELECT
+(ref:REELECT)
+</pre><table><tbody><tr><td class="tabular"><pre>                          Total
+                         ======
+Total answering             300 
+                         100.0%
+
+DESERVES RE-ELECTION        120 
+                          40.0%
+
+SOMEONE NEW                  88 
+                          29.3%
+
+DK/NR                        92 
+                          30.7%
+
+</pre></td><td class="viz-container-container"><div class="viz-container"><svg width="600" height="500"><g transform="translate(10,30)"><rect class="bar negative" x="217.5" y="12" width="217.5" height="45"></rect><rect class="bar negative" x="145" y="68" width="290" height="45"></rect><rect class="bar negative" x="116" y="124" width="319" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="180" width="261" height="45"></rect><rect class="bar positive" x="435" y="236" width="29" height="45"></rect><rect class="bar positive" x="435" y="292" width="87" height="45"></rect><rect class="bar negative" x="58" y="348" width="377" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="404" width="261" height="45"></rect><g class="x axis"><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-30</text></g><g class="tick major" transform="translate(72.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-25</text></g><g class="tick major" transform="translate(145,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-20</text></g><g class="tick major" transform="translate(217.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-15</text></g><g class="tick major" transform="translate(290,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-10</text></g><g class="tick major" transform="translate(362.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-5</text></g><g class="tick major" transform="translate(435,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">0</text></g><g class="tick major" transform="translate(507.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">5</text></g><g class="tick major" transform="translate(580,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">10</text></g><path class="domain" d="M0,-6V0H580V-6"></path></g><g class="y axis"><line x1="435" x2="435" y2="460"></line></g></g></svg></div></td></tr></tbody></table></div>
+
+
+<div class="data-section" id="IDEO1"><pre>==== Netroots Nation '13 Rockstars Poll TOP LINES === 06/21 ===
+IDEOLOGY
+(ref:IDEO1)
+</pre><table><tbody><tr><td class="tabular"><pre>                          Total
+                         ======
+Total answering             300 
+                         100.0%
+
+LIBERAL                      46 
+                          15.3%
+
+MODERATE                    129 
+                          43.0%
+
+CONSERVATIVE                119 
+                          39.7%
+
+DK/NR                         6 
+                           2.0%
+
+</pre></td><td class="viz-container-container"><div class="viz-container"><svg width="600" height="500"><g transform="translate(10,30)"><rect class="bar negative" x="217.5" y="12" width="217.5" height="45"></rect><rect class="bar negative" x="145" y="68" width="290" height="45"></rect><rect class="bar negative" x="116" y="124" width="319" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="180" width="261" height="45"></rect><rect class="bar positive" x="435" y="236" width="29" height="45"></rect><rect class="bar positive" x="435" y="292" width="87" height="45"></rect><rect class="bar negative" x="58" y="348" width="377" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="404" width="261" height="45"></rect><g class="x axis"><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-30</text></g><g class="tick major" transform="translate(72.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-25</text></g><g class="tick major" transform="translate(145,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-20</text></g><g class="tick major" transform="translate(217.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-15</text></g><g class="tick major" transform="translate(290,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-10</text></g><g class="tick major" transform="translate(362.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-5</text></g><g class="tick major" transform="translate(435,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">0</text></g><g class="tick major" transform="translate(507.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">5</text></g><g class="tick major" transform="translate(580,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">10</text></g><path class="domain" d="M0,-6V0H580V-6"></path></g><g class="y axis"><line x1="435" x2="435" y2="460"></line></g></g></svg></div></td></tr></tbody></table></div>
+
+
+<div class="data-section" id="EDUC"><pre>==== Netroots Nation '13 Rockstars Poll TOP LINES === 06/21 ===
+EDUCATION
+(ref:EDUC)
+</pre><table><tbody><tr><td class="tabular"><pre>                          Total
+                         ======
+Total answering             300 
+                         100.0%
+
+1-11TH GRADE                 11 
+                           3.7%
+
+HIGH SCHOOL GRADUATE         76 
+                          25.3%
+
+NON-COLLEGE POST H.S.        14 
+                           4.7%
+
+SOME COLLEGE                 79 
+                          26.3%
+
+COLLEGE GRADUATE             89 
+                          29.7%
+
+POST-GRAD                    27 
+                           9.0%
+
+DK/NR                         4 
+                           1.3%
+
+</pre></td><td class="viz-container-container"><div class="viz-container"><svg width="600" height="500"><g transform="translate(10,30)"><rect class="bar negative" x="217.5" y="12" width="217.5" height="45"></rect><rect class="bar negative" x="145" y="68" width="290" height="45"></rect><rect class="bar negative" x="116" y="124" width="319" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="180" width="261" height="45"></rect><rect class="bar positive" x="435" y="236" width="29" height="45"></rect><rect class="bar positive" x="435" y="292" width="87" height="45"></rect><rect class="bar negative" x="58" y="348" width="377" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="404" width="261" height="45"></rect><g class="x axis"><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-30</text></g><g class="tick major" transform="translate(72.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-25</text></g><g class="tick major" transform="translate(145,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-20</text></g><g class="tick major" transform="translate(217.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-15</text></g><g class="tick major" transform="translate(290,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-10</text></g><g class="tick major" transform="translate(362.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-5</text></g><g class="tick major" transform="translate(435,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">0</text></g><g class="tick major" transform="translate(507.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">5</text></g><g class="tick major" transform="translate(580,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">10</text></g><path class="domain" d="M0,-6V0H580V-6"></path></g><g class="y axis"><line x1="435" x2="435" y2="460"></line></g></g></svg></div></td></tr></tbody></table></div>
+
+
+<div class="data-section" id="OWN"><pre>==== Netroots Nation '13 Rockstars Poll TOP LINES === 06/21 ===
+HOME OWN
+(ref:OWN)
+</pre><table><tbody><tr><td class="tabular"><pre>                          Total
+                         ======
+Total answering             300 
+                         100.0%
+
+YES                          37 
+                          12.3%
+
+NO                          258 
+                          86.0%
+
+DK/NR                         5 
+                           1.7%
+
+</pre></td><td class="viz-container-container"><div class="viz-container"><svg width="600" height="500"><g transform="translate(10,30)"><rect class="bar negative" x="217.5" y="12" width="217.5" height="45"></rect><rect class="bar negative" x="145" y="68" width="290" height="45"></rect><rect class="bar negative" x="116" y="124" width="319" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="180" width="261" height="45"></rect><rect class="bar positive" x="435" y="236" width="29" height="45"></rect><rect class="bar positive" x="435" y="292" width="87" height="45"></rect><rect class="bar negative" x="58" y="348" width="377" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="404" width="261" height="45"></rect><g class="x axis"><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-30</text></g><g class="tick major" transform="translate(72.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-25</text></g><g class="tick major" transform="translate(145,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-20</text></g><g class="tick major" transform="translate(217.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-15</text></g><g class="tick major" transform="translate(290,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-10</text></g><g class="tick major" transform="translate(362.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-5</text></g><g class="tick major" transform="translate(435,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">0</text></g><g class="tick major" transform="translate(507.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">5</text></g><g class="tick major" transform="translate(580,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">10</text></g><path class="domain" d="M0,-6V0H580V-6"></path></g><g class="y axis"><line x1="435" x2="435" y2="460"></line></g></g></svg></div></td></tr></tbody></table></div>
+
+
+<div class="data-section" id="MANUFACT"><pre>==== Netroots Nation '13 Rockstars Poll TOP LINES === 06/21 ===
+HOME OWN (MANUFACTURED)
+(ref:MANUFACT)
+</pre><table><tbody><tr><td class="tabular"><pre>                          Total
+                         ======
+Total answering             300 
+                         100.0%
+
+YES                          97 
+                          32.3%
+
+NO                          193 
+                          64.3%
+
+DK/NR                        10 
+                           3.3%
+
+</pre></td><td class="viz-container-container"><div class="viz-container"><svg width="600" height="500"><g transform="translate(10,30)"><rect class="bar negative" x="217.5" y="12" width="217.5" height="45"></rect><rect class="bar negative" x="145" y="68" width="290" height="45"></rect><rect class="bar negative" x="116" y="124" width="319" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="180" width="261" height="45"></rect><rect class="bar positive" x="435" y="236" width="29" height="45"></rect><rect class="bar positive" x="435" y="292" width="87" height="45"></rect><rect class="bar negative" x="58" y="348" width="377" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="404" width="261" height="45"></rect><g class="x axis"><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-30</text></g><g class="tick major" transform="translate(72.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-25</text></g><g class="tick major" transform="translate(145,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-20</text></g><g class="tick major" transform="translate(217.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-15</text></g><g class="tick major" transform="translate(290,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-10</text></g><g class="tick major" transform="translate(362.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-5</text></g><g class="tick major" transform="translate(435,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">0</text></g><g class="tick major" transform="translate(507.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">5</text></g><g class="tick major" transform="translate(580,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">10</text></g><path class="domain" d="M0,-6V0H580V-6"></path></g><g class="y axis"><line x1="435" x2="435" y2="460"></line></g></g></svg></div></td></tr></tbody></table></div>
+
+
+<div class="data-section" id="REGIS"><pre>==== Netroots Nation '13 Rockstars Poll TOP LINES === 06/21 ===
+PARTY REG FROM VOTER FILE
+(ref:REGIS)
+</pre><table><tbody><tr><td class="tabular"><pre>                          Total
+                         ======
+Total answering             300 
+                         100.0%
+
+DEMOCRAT                    122 
+                          40.7%
+
+INDEPENDENT                  54 
+                          18.0%
+
+REPUBLICAN                  124 
+                          41.3%
+
+</pre></td><td class="viz-container-container"><div class="viz-container"><svg width="600" height="500"><g transform="translate(10,30)"><rect class="bar negative" x="217.5" y="12" width="217.5" height="45"></rect><rect class="bar negative" x="145" y="68" width="290" height="45"></rect><rect class="bar negative" x="116" y="124" width="319" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="180" width="261" height="45"></rect><rect class="bar positive" x="435" y="236" width="29" height="45"></rect><rect class="bar positive" x="435" y="292" width="87" height="45"></rect><rect class="bar negative" x="58" y="348" width="377" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="404" width="261" height="45"></rect><g class="x axis"><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-30</text></g><g class="tick major" transform="translate(72.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-25</text></g><g class="tick major" transform="translate(145,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-20</text></g><g class="tick major" transform="translate(217.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-15</text></g><g class="tick major" transform="translate(290,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-10</text></g><g class="tick major" transform="translate(362.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-5</text></g><g class="tick major" transform="translate(435,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">0</text></g><g class="tick major" transform="translate(507.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">5</text></g><g class="tick major" transform="translate(580,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">10</text></g><path class="domain" d="M0,-6V0H580V-6"></path></g><g class="y axis"><line x1="435" x2="435" y2="460"></line></g></g></svg></div></td></tr></tbody></table></div>
+
+
+<div class="data-section" id="GC1GC2"><pre>==== Netroots Nation '13 Rockstars Poll TOP LINES === 06/21 ===
+GENERIC STATE LEGISLATIVE VOTE
+(ref:GC1 GC2 )
+</pre><table><tbody><tr><td class="tabular"><pre>                          Total
+                         ======
+Total answering             300 
+                         100.0%
+
+DEMOCRATIC CANDIDATE         99 
+                          33.0%
+
+LEAN DEMOCRATIC              12 
+                           4.0%
+
+REPUBLICAN CANDIDATE        130 
+                          43.3%
+
+LEAN REPUBLICAN               7 
+                           2.3%
+
+UNDECIDED                    42 
+                          14.0%
+
+OTHER                      -  
+                           0.0%
+
+TOTAL DEM                   111 
+                          37.0%
+
+TOTAL REPUBLICAN            137 
+                          45.7%
+
+TOTAL DEM - TOTAL REP       -26 
+                          -8.7%
+
+</pre></td><td class="viz-container-container"><div class="viz-container"><svg width="600" height="500"><g transform="translate(10,30)"><rect class="bar negative" x="217.5" y="12" width="217.5" height="45"></rect><rect class="bar negative" x="145" y="68" width="290" height="45"></rect><rect class="bar negative" x="116" y="124" width="319" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="180" width="261" height="45"></rect><rect class="bar positive" x="435" y="236" width="29" height="45"></rect><rect class="bar positive" x="435" y="292" width="87" height="45"></rect><rect class="bar negative" x="58" y="348" width="377" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="404" width="261" height="45"></rect><g class="x axis"><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-30</text></g><g class="tick major" transform="translate(72.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-25</text></g><g class="tick major" transform="translate(145,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-20</text></g><g class="tick major" transform="translate(217.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-15</text></g><g class="tick major" transform="translate(290,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-10</text></g><g class="tick major" transform="translate(362.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-5</text></g><g class="tick major" transform="translate(435,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">0</text></g><g class="tick major" transform="translate(507.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">5</text></g><g class="tick major" transform="translate(580,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">10</text></g><path class="domain" d="M0,-6V0H580V-6"></path></g><g class="y axis"><line x1="435" x2="435" y2="460"></line></g></g></svg></div></td></tr></tbody></table></div>
+
+
+<div class="data-section" id="GOVVOTEGOVLEAN"><pre>==== Netroots Nation '13 Rockstars Poll TOP LINES === 06/21 ===
+GOVERNOR RACE
+(ref:GOVVOTE, GOVLEAN )
+</pre><table><tbody><tr><td class="tabular"><pre>                          Total
+                         ======
+Total answering             300 
+                         100.0%
+
+BB KING                     139 
+                          46.3%
+
+LEAN BB KING                  8 
+                           2.7%
+
+MANFRED MANN                106 
+                          35.3%
+
+LEAN MANFRED MANN             7 
+                           2.3%
+
+UNDECIDED                    40 
+                          13.3%
+
+TOTAL BB KING               147 
+                          49.0%
+
+TOTAL MANFRED MANN          113 
+                          37.7%
+
+TOTAL BB KING - MANN         34 
+                          11.3%
+
+</pre></td><td class="viz-container-container"><div class="viz-container"><svg width="600" height="500"><g transform="translate(10,30)"><rect class="bar negative" x="217.5" y="12" width="217.5" height="45"></rect><rect class="bar negative" x="145" y="68" width="290" height="45"></rect><rect class="bar negative" x="116" y="124" width="319" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="180" width="261" height="45"></rect><rect class="bar positive" x="435" y="236" width="29" height="45"></rect><rect class="bar positive" x="435" y="292" width="87" height="45"></rect><rect class="bar negative" x="58" y="348" width="377" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="404" width="261" height="45"></rect><g class="x axis"><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-30</text></g><g class="tick major" transform="translate(72.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-25</text></g><g class="tick major" transform="translate(145,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-20</text></g><g class="tick major" transform="translate(217.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-15</text></g><g class="tick major" transform="translate(290,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-10</text></g><g class="tick major" transform="translate(362.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-5</text></g><g class="tick major" transform="translate(435,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">0</text></g><g class="tick major" transform="translate(507.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">5</text></g><g class="tick major" transform="translate(580,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">10</text></g><path class="domain" d="M0,-6V0H580V-6"></path></g><g class="y axis"><line x1="435" x2="435" y2="460"></line></g></g></svg></div></td></tr></tbody></table></div>
+
+
+<div class="data-section" id="VOTE1VOTE1B"><pre>==== Netroots Nation '13 Rockstars Poll TOP LINES === 06/21 ===
+INITIAL VOTE
+(ref:VOTE1,VOTE1B )
+</pre><table><tbody><tr><td class="tabular"><pre>                          Total
+                         ======
+Total answering             300 
+                         100.0%
+
+MICK JAGGER                 101 
+                          33.7%
+
+LEAN MICK JAGGER             11 
+                           3.7%
+
+PETE TOWNSEND               132 
+                          44.0%
+
+LEAN PETE TOWNSEND            7 
+                           2.3%
+
+UNDECIDED                    49 
+                          16.3%
+
+TOTAL MICK JAGGER           112 
+                          37.3%
+
+TOTAL PETE TOWNSEND         181 
+                          60.3%
+
+TOTAL JAGGER - TOWNSEND     -27 
+                          -9.0%
+
+</pre></td><td class="viz-container-container"><div class="viz-container"><svg width="600" height="500"><g transform="translate(10,30)"><rect class="bar negative" x="217.5" y="12" width="217.5" height="45"></rect><rect class="bar negative" x="145" y="68" width="290" height="45"></rect><rect class="bar negative" x="116" y="124" width="319" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="180" width="261" height="45"></rect><rect class="bar positive" x="435" y="236" width="29" height="45"></rect><rect class="bar positive" x="435" y="292" width="87" height="45"></rect><rect class="bar negative" x="58" y="348" width="377" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="404" width="261" height="45"></rect><g class="x axis"><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-30</text></g><g class="tick major" transform="translate(72.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-25</text></g><g class="tick major" transform="translate(145,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-20</text></g><g class="tick major" transform="translate(217.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-15</text></g><g class="tick major" transform="translate(290,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-10</text></g><g class="tick major" transform="translate(362.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-5</text></g><g class="tick major" transform="translate(435,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">0</text></g><g class="tick major" transform="translate(507.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">5</text></g><g class="tick major" transform="translate(580,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">10</text></g><path class="domain" d="M0,-6V0H580V-6"></path></g><g class="y axis"><line x1="435" x2="435" y2="460"></line></g></g></svg></div></td></tr></tbody></table></div>
+
+
+<div class="data-section" id="VOTEBIOVOTEBIO2"><pre>==== Netroots Nation '13 Rockstars Poll TOP LINES === 06/21 ===
+INFORMED BIO VOTE
+(ref:VOTEBIO,VOTEBIO2 )
+</pre><table><tbody><tr><td class="tabular"><pre>                          Total
+                         ======
+Total answering             300 
+                         100.0%
+
+MICK JAGGER                 104 
+                          34.7%
+
+LEAN MICK JAGGER              9 
+                           3.0%
+
+PETE TOWNSEND               136 
+                          45.3%
+
+LEAN PETE TOWNSEND           10 
+                           3.3%
+
+UNDECIDED                    41 
+                          13.7%
+
+TOTAL MICK JAGGER           113 
+                          37.7%
+
+TOTAL PETE TOWNSEND         177 
+                          59.0%
+
+TOTAL JAGGER - TOWNSEND     -33 
+                         -11.0%
+
+</pre></td><td class="viz-container-container"><div class="viz-container"><svg width="600" height="500"><g transform="translate(10,30)"><rect class="bar negative" x="217.5" y="12" width="217.5" height="45"></rect><rect class="bar negative" x="145" y="68" width="290" height="45"></rect><rect class="bar negative" x="116" y="124" width="319" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="180" width="261" height="45"></rect><rect class="bar positive" x="435" y="236" width="29" height="45"></rect><rect class="bar positive" x="435" y="292" width="87" height="45"></rect><rect class="bar negative" x="58" y="348" width="377" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="404" width="261" height="45"></rect><g class="x axis"><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-30</text></g><g class="tick major" transform="translate(72.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-25</text></g><g class="tick major" transform="translate(145,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-20</text></g><g class="tick major" transform="translate(217.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-15</text></g><g class="tick major" transform="translate(290,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-10</text></g><g class="tick major" transform="translate(362.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-5</text></g><g class="tick major" transform="translate(435,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">0</text></g><g class="tick major" transform="translate(507.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">5</text></g><g class="tick major" transform="translate(580,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">10</text></g><path class="domain" d="M0,-6V0H580V-6"></path></g><g class="y axis"><line x1="435" x2="435" y2="460"></line></g></g></svg></div></td></tr></tbody></table></div>
+
+
+<div class="data-section" id="PTYID1PTYID2PTYID3"><pre>==== Netroots Nation '13 Rockstars Poll TOP LINES === 06/21 ===
+PARTY IDENTIFICATION
+(ref:PTYID1 PTYID2 PTYID3 )
+</pre><table><tbody><tr><td class="tabular"><pre>                          Total
+                         ======
+Total answering             300 
+                         100.0%
+
+STRONG DEMOCRAT              77 
+                          25.7%
+
+WEAK DEMOCRAT                29 
+                           9.7%
+
+INDEPENDENT LEAN DEMOCRAT    15 
+                           5.0%
+
+INDEPENDENT                  37 
+                          12.3%
+
+INDEPENDENT LEAN REPUBLICAN    12 
+                           4.0%
+
+WEAK REPUBLICAN              36 
+                          12.0%
+
+STRONG REPUBLICAN            94 
+                          31.3%
+
+2-3-2 DEMOCRAT              106 
+                          35.3%
+
+2-3-2 INDEPENDENT            64 
+                          21.3%
+
+2-3-2 REPUBLICAN            130 
+                          43.3%
+
+DEMOCRAT - REPUBLICAN       -24 
+                          -8.0%
+
+3-1-3 DEMOCRAT              121 
+                          40.3%
+
+3-1-3 INDEPENDENT            37 
+                          12.3%
+
+3-1-3 REPUBLICAN            142 
+                          47.3%
+
+DEMOCRAT - REPUBLICAN       -45 
+                         -15.0%
+
+</pre></td><td class="viz-container-container"><div class="viz-container"><svg width="600" height="500"><g transform="translate(10,30)"><rect class="bar negative" x="217.5" y="12" width="217.5" height="45"></rect><rect class="bar negative" x="145" y="68" width="290" height="45"></rect><rect class="bar negative" x="116" y="124" width="319" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="180" width="261" height="45"></rect><rect class="bar positive" x="435" y="236" width="29" height="45"></rect><rect class="bar positive" x="435" y="292" width="87" height="45"></rect><rect class="bar negative" x="58" y="348" width="377" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="404" width="261" height="45"></rect><g class="x axis"><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-30</text></g><g class="tick major" transform="translate(72.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-25</text></g><g class="tick major" transform="translate(145,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-20</text></g><g class="tick major" transform="translate(217.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-15</text></g><g class="tick major" transform="translate(290,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-10</text></g><g class="tick major" transform="translate(362.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-5</text></g><g class="tick major" transform="translate(435,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">0</text></g><g class="tick major" transform="translate(507.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">5</text></g><g class="tick major" transform="translate(580,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">10</text></g><path class="domain" d="M0,-6V0H580V-6"></path></g><g class="y axis"><line x1="435" x2="435" y2="460"></line></g></g></svg></div></td></tr></tbody></table></div>
+
+
+<div class="data-section" id="AGE"><pre>==== Netroots Nation '13 Rockstars Poll TOP LINES === 06/21 ===
+AGE
+(ref:AGE  )
+</pre><table><tbody><tr><td class="tabular"><pre>                          Total
+                         ======
+Total answering             300 
+                         100.0%
+
+18 - 24                      12 
+                           4.0%
+
+25 - 29                      12 
+                           4.0%
+
+30 - 34                      11 
+                           3.7%
+
+35 - 39                       8 
+                           2.7%
+
+40 - 44                      13 
+                           4.3%
+
+45 - 49                      21 
+                           7.0%
+
+50 - 54                      22 
+                           7.3%
+
+55 - 59                      28 
+                           9.3%
+
+60 - 64                      37 
+                          12.3%
+
+NO ANSWER                    13 
+                           4.3%
+
+OVER 64                     123 
+                          41.0%
+
+18 - 49                      77 
+                          25.7%
+
+50 AND OVER                 210 
+                          70.0%
+
+</pre></td><td class="viz-container-container"><div class="viz-container"><svg width="600" height="500"><g transform="translate(10,30)"><rect class="bar negative" x="217.5" y="12" width="217.5" height="45"></rect><rect class="bar negative" x="145" y="68" width="290" height="45"></rect><rect class="bar negative" x="116" y="124" width="319" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="180" width="261" height="45"></rect><rect class="bar positive" x="435" y="236" width="29" height="45"></rect><rect class="bar positive" x="435" y="292" width="87" height="45"></rect><rect class="bar negative" x="58" y="348" width="377" height="45"></rect><rect class="bar negative" x="174.00000000000003" y="404" width="261" height="45"></rect><g class="x axis"><g class="tick major" transform="translate(0,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-30</text></g><g class="tick major" transform="translate(72.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-25</text></g><g class="tick major" transform="translate(145,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-20</text></g><g class="tick major" transform="translate(217.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-15</text></g><g class="tick major" transform="translate(290,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-10</text></g><g class="tick major" transform="translate(362.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">-5</text></g><g class="tick major" transform="translate(435,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">0</text></g><g class="tick major" transform="translate(507.5,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">5</text></g><g class="tick major" transform="translate(580,0)" style="opacity: 1;"><line y2="-6" x2="0"></line><text y="-9" x="0" dy="0em" style="text-anchor: middle;">10</text></g><path class="domain" d="M0,-6V0H580V-6"></path></g><g class="y axis"><line x1="435" x2="435" y2="460"></line></g></g></svg></div></td></tr></tbody></table></div>
+
+
+
+
+</div>
+
+</body></html>

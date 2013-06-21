@@ -2,7 +2,8 @@
         <html lang='en'>
             <html>
             <meta charset = 'utf-8'>
-            <script type='text/javascript' src='../js/d3/d3.v3.js'>
+            <script type='text/javascript' src='../js/d3/d3.v3.js'> </script>
+            <script type='text/javascript' src='../js/jquery.js'> </script>
             <style type='text/css'>
 			text {
 				font-family: sans-serif;
@@ -12,26 +13,145 @@
             </style>
             </head>
             <body>
+                
+                <button class = 'unassigned'>Party ID without categories</button>
+                <br>
+                <button class = 'assigned232'>Party ID assigned by 2-3-2</button>
+                <br>
+                <button class = 'assigned313'>Party ID</button>
+                <br>
+                                
                 <script type="text/javascript">
-
+                function makeChart(dataset, colors) {
+                    $("svg").remove();
+                    
                     // Basic parameters for object
 
                     // width, height and padding
+                    var w = 800;
+                    var h = 500;
+                    var xPadding = 20;
+                    var yPadding = 20;
+                                    
+                    var qName =  'Party ID';
 
-                    var w = ;
-                    var h = ;
-                    var xPadding = ;
-                    var yPadding = ;
-                
-                    // dataset things
-                
-                    var dataset = [];
-
-                    var qName =  '';
-
-                    var qSummary = ''
-                
+                    var qSummary = 'Party Identification'
+                                                                    
                     // specifics of visualisation
+                
+                    // scales 
+                    
+                    var xScale = d3.scale.ordinal()
+        							.domain(d3.range(dataset.length))
+        							.rangeRoundBands([0, w], 0.05);
+                    
+                    var yScale = d3.scale.linear()
+                                    .domain([0, d3.max(dataset)])
+                                    .range([0,h]);
+                    
+                    // SVG element
+                    
+                    var svg = d3.select("body")
+                                .append("svg")
+                                .attr("width", w)
+                                .attr("height", h);
+                        
+                    // create bars
+                    
+                    svg.selectAll("rect")
+                        .data(dataset)
+                        .enter()
+                        .append("rect")
+                        .attr("x", function(d,i){
+                            return xScale(i);
+                        })
+                        .attr("y", function(d){
+                            return h - yScale(d);
+                        })
+                        .attr("width", xScale.rangeBand())
+                        .attr("height", function(d,i) {
+                            return yScale(d);
+                        })
+                        .attr("fill", function(d,i){
+                            return colors[i][1];
+                        });
+                    
+                    // add text
+                    
+                    svg.selectAll("text")
+                        .data(dataset)
+                        .enter()
+                        .append("text")
+                        .text(function(d) {
+                            return d + '%';
+                        })
+                        .attr("text-anchor", "middle")
+                        .attr("x", function(d,i) {
+                            return xScale(i) + xScale.rangeBand() / 2;
+                        })
+                        .attr("y", function(d) {
+                            return h - yScale(d) + 28;
+                        });
+                }
+                
+                d3.select(".unassigned").on("click", function() {
+                    // dataset things
+                    var dataset = [
+                    25.7,   // Strong Democrat
+                    9.7,    // Weak Democrat 
+                    5,      // Independent: Lean Democrat 
+                    12.3,   //Independent 
+                    4,      // Independent: Lean Republican// 
+                    12,     // Weak Republican 
+                    31.3    // Strong Republican
+                    ]; 
+
+                    var colors =   [
+                                    ["Dark Blue","#1B14E3"],
+                                    ["Light Blue","#14BDE3"],
+                                    ["Blueish Purple","#CB14E3"],
+                                    ["Purple","#553359"],
+                                    ["Reddish Purple","#D13287"],
+                                    ["Light Red", "#EB6C6C"],
+                                    ["Red","#FC0000"]
+                                    ];
+                    makeChart(dataset, colors);
+                });
+                // On click, do 2-3-2
+
+                d3.select(".assigned232").on("click", function() {
+                    var dataset = [
+                    35.4,    // Strong and Weak Dems 
+                    21.3,    // All Independents 
+                    43.3    // Strong and Weak Reps
+                    ]; 
+
+                    var colors =   [
+                                    ["Dark Blue","#1B14E3"],
+                                    ["Purple","#553359"],
+                                    ["Red","#FC0000"]
+                                    ];
+                    makeChart(dataset, colors);
+                });
+                
+                d3.select(".assigned313").on("click", function() {
+                    var dataset = [
+                    40.4,   // Dems and Leaners
+                    
+                    12.3,   //Independent 
+
+                    47.3    // Reps And Leaners
+                    ]; 
+
+                    var colors =   [
+                                    ["Dark Blue","#1B14E3"],
+                                    ["Purple","#553359"],
+                                    ["Red","#FC0000"]
+                                    ];
+                    makeChart(dataset, colors);
+                });
+                
+                
                 
                 </script>
             </body>

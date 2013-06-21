@@ -2,7 +2,7 @@
         <html lang='en'>
             <html>
             <meta charset = 'utf-8'>
-            <script type='text/javascript' src='../js/d3/d3.v3.js'>
+            <script type='text/javascript' src='../js/d3/d3.v3.js'> </script>
             <style type='text/css'>
 			text {
 				font-family: sans-serif;
@@ -12,20 +12,23 @@
             </style>
             </head>
             <body>
+                <p> A comparison of magnitude: Registered to Vote vs. Not Registered to Vote </p>
                 <script type="text/javascript">
 
                     // Basic parameters for object
 
                     // width, height and padding
 
-                    var w = 300;
-                    var h = 300;
+                    var w = 500;
+                    var h = 500;
                     var xPadding = 0;
                     var yPadding = 0;
                 
                     // dataset things
                     
                     var dataset = [100,0];
+                    
+                    var labels = ["Yes", "No"];
 
                     var qName =  'SCREEN1';
 
@@ -39,10 +42,10 @@
                     // Extended configs
                     
                     var arc = d3.svg.arc()
-                        .innerRadius(innerRadius)
-                        .outerRadius(outerRadius);
+                            .innerRadius(innerRadius)
+                            .outerRadius(outerRadius);
                     
-                    var pie = d3.layout.pie;
+                    var pie = d3.layout.pie();
                     
                     var color = ["blue","red"];
                     
@@ -55,24 +58,33 @@
                     
                     // arc groups
                     
-                    var arcs = svg.selectAll("g.arc")
-                                .data(pie(dataset))
-                                .enter
-                                .append("g")
-                                .attr("class", "arc")
-                                .attr("transform", "translate(" + outerRadius + "," + outerRadius + ")");
+        			var arcs = svg.selectAll("g.arc")
+        						  .data(pie(dataset))
+        						  .enter()
+        						  .append("g")
+        						  .attr("class", "arc")
+        						  .attr("transform", "translate(" + outerRadius + "," + outerRadius + ")");
                     
                     // Draw the arc paths
                     
                     arcs.append("path")
                         .attr("fill", function(d,i) {
-                            return color(i);
+                            console.log(i);
+                            return color[i];
                         })
                         .attr("d",arc);
-                        
                     
+                    // Add the text labels
                     
-                    
+                    arcs.append("text")
+                        .attr("transform", function(d){
+                                return "translate(" + arc.centroid(d) + ")";})
+                        .attr("text-anchor", "middle")
+                        .text(function() {
+                            for (var i=0; i < labels.length; i++) {
+                                return labels[i];
+                            };
+                        });
                 
                 </script>
             </body>

@@ -26,7 +26,7 @@ for name in question_names :
         <html lang='en'>
             <html>
             <meta charset = 'utf-8'>
-            <script type='text/javascript' src='../js/d3/d3.v3.js'>
+            <script type='text/javascript' src='../js/d3/d3.v3.js'> </script>
             <style type='text/css'>
 			text {
 				font-family: sans-serif;
